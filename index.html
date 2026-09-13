@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Birthday ❤️</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  background: rgba(15, 15, 15, 0.9);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff4d6d; }
+  50% { text-shadow: 0 0 20px #ff4d6d, 0 0 30px #ff4d6d, 0 0 40px #ff1493; }
+}
+
+img {
+  width: 220px;
+  border-radius: 20px;
+  margin: 20px 0;
+  border: 3px solid #ff4d6d;
+  animation: bounce 2s ease-in-out infinite;
+  box-shadow: 0 10px 30px rgba(255, 77, 109, 0.4);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+p {
+  font-size: 1.1em;
+  margin: 20px 0;
+  line-height: 1.6;
+  animation: fadeIn 1s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ff4d6d, #ff1493);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 77, 109, 0.6);
+}
+
+button:active {
+  transform: translateY(-1px);
+}
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+}
+
+.heart-animation {
+  position: fixed;
+  font-size: 2em;
+  pointer-events: none;
+  animation: heartFloat 3s ease-out forwards;
+}
+
+@keyframes heartFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0);
+  }
+}
+
+.stars {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: twinkle 1.5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Happy Birthday Harshi ❤️</h1>
+  <img src="photo.jpg" alt="Birthday person">
+  <p>You are my favorite person. I hope this year brings you endless smiles and happiness.</p>
+  
+  <div class="button-group">
+    <button onclick="createConfetti()">🎉 Celebrate</button>
+    <button onclick="createHearts()">💝 Send Love</button>
+    <button onclick="alert('I Love You ❤️')">❤️ Open My Heart</button>
+  </div>
+</div>
+
+<script>
+function createConfetti() {
+  const colors = ['#ff4d6d', '#ff1493', '#ffd700', '#00d4ff', '#00ff88'];
+  
+  for (let i = 0; i < 50; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * window.innerWidth + 'px';
+    confetti.style.top = '-10px';
+    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.animation = `confetti-fall ${2 + Math.random() * 1}s linear forwards`;
+    document.body.appendChild(confetti);
+    
+    setTimeout(() => confetti.remove(), 3000);
+  }
+}
+
+function createHearts() {
+  const heart = '❤️';
+  for (let i = 0; i < 15; i++) {
+    const heartDiv = document.createElement('div');
+    heartDiv.className = 'heart-animation';
+    heartDiv.textContent = heart;
+    heartDiv.style.left = Math.random() * window.innerWidth + 'px';
+    heartDiv.style.top = window.innerHeight / 2 + 'px';
+    document.body.appendChild(heartDiv);
+    
+    setTimeout(() => heartDiv.remove(), 3000);
+  }
+}
+
+// Add CSS animation dynamically
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes confetti-fall {
+    to {
+      transform: translateY(${window.innerHeight}px) rotateZ(360deg);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(style);
+
+// Create background stars
+function createStars() {
+  for (let i = 0; i < 50; i++) {
+    const star = document.createElement('div');
+    star.className = 'stars';
+    star.style.left = Math.random() * window.innerWidth + 'px';
+    star.style.top = Math.random() * window.innerHeight + 'px';
+    star.style.animationDelay = Math.random() * 1.5 + 's';
+    document.body.appendChild(star);
+  }
+}
+
+createStars();
+</script>
+
+</body>
+</html>
